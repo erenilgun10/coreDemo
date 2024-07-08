@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concrate
+@model List<Category>
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Category Adı</th>
+        <th>Category Durumu</th>
+        <th>Category Detayları</th>
+        <th>Sil</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.CategoryId</td>
+            <td>@item.CategoryName</td>
+            <td>@item.CategoryStatus</td>
+            <td><a href="#" class="btn btn-warning">Detaylar</td>
+            <td><a href="#" class="btn btn-Danger">Sil</td>
+        </tr>
+    }
+
+</table>
