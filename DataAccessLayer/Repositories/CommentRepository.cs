@@ -25,6 +25,11 @@ namespace DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
+        public List<Comment> GetList()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(Comment t)
         {
             throw new NotImplementedException();
