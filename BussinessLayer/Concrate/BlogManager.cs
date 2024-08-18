@@ -53,6 +53,10 @@ namespace BussinessLayer.Concrate
 		{
 			return _blogDal.GetList();
 		}
-		
-	}
+
+        public List<Blog> GetBlogListByWriter(int id)
+        {
+			return _blogDal.GetList( x=>x.WriterId==id);
+        }
+    }
 }
