@@ -13,7 +13,7 @@
 </div>
 
 
-@* Action Kullanmadan json formatında veriyi yollatıyorum.   *@
+@* Action Kullanmadan json formatında ajax ile veriyi yollatıyorum.   *@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -21,9 +21,9 @@
             e.preventDefault();
 
             $.ajax({
-                url: '/Comment/PartialAddComment', // Action'ın tam yolu
+                url: '/Comment/PartialAddComment', 
                 type: 'POST',
-                data: $(this).serialize(), // Form verilerini JSON formatında gönder
+                data: $(this).serialize(), 
                 success: function (response) {
                     if (response.success) {
                         swal("Tebrikler!", "Başarıyla yorum yaptınız!", "success");
