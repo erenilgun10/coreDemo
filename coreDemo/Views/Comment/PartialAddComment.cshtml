@@ -1,14 +1,43 @@
-﻿<div class="comment-top">
-	<h4>Yorum Giriniz</h4>
-	<div class="comment-bottom">
-		<form action="#" method="post">
-			<input class="form-control" type="text" name="Name" placeholder="İsim" required="">
-			<input class="form-control" type="email" name="Email" placeholder="Mail" required="">
-
-			<input class="form-control" type="text" name="Subject" placeholder="Konu" required="">
-
-			<textarea class="form-control" name="Message" placeholder="Buraya mesaj yazınız..." required=""></textarea>
-			<button type="submit" class="btn btn-primary submit">Kaydet</button>
-		</form>
-	</div>
+﻿
+<div class="comment-top">
+    <h4>Yorum Giriniz</h4>
+    <div class="comment-bottom">
+        <form id="commentForm" method="post">
+            <input type="hidden" name="BlogId" value="@ViewBag.i" />
+            <input class="form-control" type="text" name="CommentUserName" placeholder="Adınız SoyAdınız" required="">
+            <input class="form-control" type="text" name="CommentTitle" placeholder="Başlık" required="">
+            <textarea class="form-control" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
+            <button type="submit" class="btn btn-primary submit">Yorum Yap</button>
+        </form>
+    </div>
 </div>
+
+
+@* Action Kullanmadan json formatında veriyi yollatıyorum.   *@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#commentForm').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '/Comment/PartialAddComment', // Action'ın tam yolu
+                type: 'POST',
+                data: $(this).serialize(), // Form verilerini JSON formatında gönder
+                success: function (response) {
+                    if (response.success) {
+                        swal("Tebrikler!", "Başarıyla yorum yaptınız!", "success");
+                        $('#commentForm')[0].reset();
+                    } else {
+                        swal("Hata!", response.message, "error");
+                    }
+                },
+                error: function () {
+                    swal("Hata!", "Bir hata oluştu, lütfen tekrar deneyin.", "error");
+                }
+            });
+        });
+    });
+</script>
+
+

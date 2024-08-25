@@ -1,0 +1,40 @@
+﻿
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="tech-btm">
+    <h4>Mail Bültenine Abone olun</h4>
+    <p>Teknoloji, yazılım ve diğer bloglar.</p>
+
+    <form id="subscribeForm" method="post">
+        <input type="email" placeholder="Email" required="" name="mail">
+        <button type="submit" class="btn btn-info" id="btn1">Abone Ol</button>
+    </form>
+</div>
+
+@* Action Kullanmadan json formatında veriyi yollatıyorum.   *@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $('#subscribeForm').on('submit', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '/NewsLetter/SubscribeMail',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.success) {
+                    swal("Tebrikler!", "Başarıyla abone oldunuz!", "success");
+                    $('#subscribeForm')[0].reset();
+                } else {
+                    swal("Hata!", response.message, "error");
+                }
+            },
+            error: function () {
+                swal("Hata!", "Bir hata oluştu, lütfen tekrar deneyin.", "error");
+            }
+        });
+    });
+
+</script>
+
+
