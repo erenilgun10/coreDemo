@@ -13,9 +13,9 @@ namespace DataAccessLayer.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //lp
-            optionsBuilder.UseSqlServer("server=DESKTOP-51TNQ4H;database=CoreBlogDb; integrated security=true;TrustServercertificate=true;");
+            //optionsBuilder.UseSqlServer("server=DESKTOP-51TNQ4H;database=CoreBlogDb; integrated security=true;TrustServercertificate=true;");
             //Bpc
-         // optionsBuilder.UseSqlServer("server=DESKTOP-FKCBKLL;database=CoreBlogDb; integrated security=true;TrustServercertificate=true;");
+             optionsBuilder.UseSqlServer("server=DESKTOP-FKCBKLL;database=CoreBlogDb; integrated security=true;TrustServercertificate=true;");
 
         }
 
@@ -25,6 +25,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Writer> Writers { get; set; }
+        public DbSet<NewsLetter> NewsLetters { get; set; }
 
 
     }
